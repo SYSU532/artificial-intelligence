@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzles</title>
+    <link rel="stylesheet" type="text/css" href="puzzle.css">
+    <script src="jquery-3.2.1.js"></script>
+    <script src="puzzle.js" type="text/javascript"></script>
+    <script src="aStarView.js" type="text/javascript"></script>
+    <script src="aStar.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1> 图搜索策略 </h1>
+    <span>选择你自己的图片：</span>
+    <div id="file-area">上传文件<input type="file" id="file"></div>
+    <p id="message">请选择需要的搜索模式开始</p>
+    <div id="playground"></div>
+    <div id="button-area">
+        <button id="switch-bfs" class="click search-btn">广度优先</button>
+        <button id="switch-astar-h1" class="click search-btn">A星 h1</button>
+        <button id="switch-astar-h2" class="click search-btn">A星 h2</button>
+    </div>
+    <p>总扩展结点数: <span id="total-step">0</span></p>
+    <p>OPEN表结点数：<span id="open-node">0</span></p>
+    <p>OPEN表评估函值最小结点如下：</p>
+    <span id="open-row1" class="row">0, 0, 0</span>
+    <span id="open-row2" class="row">0, 0, 0</span>
+    <span id="open-row3" class="row">0, 0, 0</span>
+</body>
+</html>
