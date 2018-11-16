@@ -10,6 +10,7 @@ function runBFS(): any {
     method = new bfs(seq, current_blank);
     showInfo();
     addButtons();
+    $("#title").text("广度优先算法")
 }
 
 function showInfo(): any {
@@ -31,6 +32,7 @@ function runAStarH1(): any {
     method = new aStarH1(seq, current_blank);
     showInfo();
     addButtons();
+    $("#title").text("A星算法 H1")
 }
 
 function runAStarH2(): any {
@@ -40,6 +42,7 @@ function runAStarH2(): any {
     showInfo();
     runTimeout = setTimeout(goNext, 100);
     addButtons();
+    $("#title").text("A星算法 H2")
 }
 
 
@@ -118,6 +121,6 @@ function addButtons() {
         $("#message").text("搜索完成。步数："+method.steps+", 路径长度："+method.pathToCurrent.length);
         goNext();
         showInfo();
-    }).text("直接获取"));
+    }).text("直接求解"));
 }
 

@@ -13,6 +13,7 @@ class node {
     public children: node[];
     public state: number[];
     public blankIndex: number;
+    //the value is the f(n) of the node.
     public value: number;
     constructor(state: number[], currentBlank: number, parent: node|null) {
         this.parent = parent;
@@ -153,7 +154,21 @@ abstract class searchMethod {
 class aStarH1 extends searchMethod{
 
     public addNewOpenNodeWithVal(newNode: node): void {
-        this.openTable.queue(newNode);
+        if (!(newNode.identifier in this.closedTable)) {
+            //The cost from root to the current node, i.e g*(n)
+            let currentCost = newNode.path.length;
+            //The cost from current node to destination(h1*(n)) is estimated
+            //by the number of misplaced numbers.
+            let estimatedMinCost = 0;
+            for (let i = 0; i < newNode.state.length; i++) {
+                if (newNode.state[i] !== i) {
+                    estimatedMinCost += 1;
+                }
+            }
+            newNode.value = currentCost + estimatedMinCost;
+
+            this.openTable.queue(newNode);
+        }
     }
 }
 
@@ -161,6 +176,19 @@ class aStarH2 extends searchMethod{
 
     public addNewOpenNodeWithVal(newNode: node): void {
         if (!(newNode.identifier in this.closedTable)) {
+            //The cost from root to the current node, i.e g*(n)
+            let currentCost = newNode.path.length;
+            //The cost from current node to destination(h1*(n)) is estimated
+            //by the sum of the column and row differences in each position.
+            let estimatedMinCost = 0;
+            for (let i = 0; i < newNode.state.length; i++) {
+                //Row differences
+                estimatedMinCost += Math.abs(i/3 - newNode.state[i]/3);
+                //Column differences
+                estimatedMinCost += Math.abs(i%3 - newNode.state[i]%3);
+            }
+            newNode.value = currentCost + estimatedMinCost;
+
             this.openTable.queue(newNode);
         }
     }

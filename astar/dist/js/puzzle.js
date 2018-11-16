@@ -181,6 +181,7 @@ function startGame() {
     $("#button-area").append($("<button>").attr("id", "reset").addClass("click").text("还原"));
     $("#reset").click(function() {
         showPicture(sequence);
+        $("#title").text("图搜索策略");
         $(".search-btn").show();
         $("#message").text("请选择需要的搜索模式以开始");
         $("#pause").remove();
@@ -190,6 +191,7 @@ function startGame() {
         $("#showpath").remove();
         $("#run-all").remove();
         clearTimeout(runTimeout);
+        runTimeout = -2;
     });
     current_blank = origin_blank;
     printPicture(sequence);
