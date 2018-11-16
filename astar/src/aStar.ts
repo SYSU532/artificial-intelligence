@@ -158,12 +158,10 @@ class aStarH1 extends searchMethod{
             //The cost from root to the current node, i.e g*(n)
             let currentCost = newNode.path.length;
             //The cost from current node to destination(h1*(n)) is estimated
-            //by the number of misplaced numbers.
+            //by the distance of each misplaced number to its actual position.
             let estimatedMinCost = 0;
             for (let i = 0; i < newNode.state.length; i++) {
-                if (newNode.state[i] !== i) {
-                    estimatedMinCost += 1;
-                }
+                estimatedMinCost += Math.sqrt(Math.pow(i/3 - newNode.state[i]/3, 2) + Math.pow(i%3 - newNode.state[i]%3, 2));
             }
             newNode.value = currentCost + estimatedMinCost;
 
@@ -179,7 +177,7 @@ class aStarH2 extends searchMethod{
             //The cost from root to the current node, i.e g*(n)
             let currentCost = newNode.path.length;
             //The cost from current node to destination(h1*(n)) is estimated
-            //by the sum of the column and row differences in each position.
+            //by the sum of the column and row differences in each misplaced position.
             let estimatedMinCost = 0;
             for (let i = 0; i < newNode.state.length; i++) {
                 //Row differences
