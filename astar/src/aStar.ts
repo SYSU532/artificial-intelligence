@@ -1,4 +1,6 @@
+
 //AStar algorithm
+/// <reference path="./priority-queue.d.ts" />
 
 function ArraySwapIndex<T>(arr: Array<T>, indexA: number, indexB: number) {
     [arr[indexA], arr[indexB]] = [arr[indexB], arr[indexA]];
@@ -14,14 +16,24 @@ class node {
     public value: number;
     constructor(state: number[], currentBlank: number, parent: node|null) {
         this.parent = parent;
-        this.state = Object.assign([], state);
+        this.state = state.slice();
         this.blankIndex = currentBlank;
         this.children = [];
         this.value = 0;
     }
 
-    get identifier() {
+    public get identifier() {
         return this.state.toString();
+    }
+
+    public get path(): node[] {
+        let result: node[] = [];
+        let curr: node|null = this;
+        while (curr !== null) {
+            result.unshift(curr);
+            curr = curr.parent;
+        }
+        return result;
     }
 
     public getChildren(): node[] {
@@ -30,25 +42,25 @@ class node {
         }
         if (this.blankIndex % 3 !== 2) {
             //Blank move right
-            let newState = Object.assign([], this.state);
+            let newState = this.state.slice();
             ArraySwapIndex(newState, this.blankIndex, this.blankIndex+1);
             this.children.push(new node(newState, this.blankIndex + 1, this));
         }
         if (this.blankIndex % 3 !== 0) {
             //Blank move left
-            let newState = Object.assign([], this.state);
+            let newState = this.state.slice();
             ArraySwapIndex(newState, this.blankIndex, this.blankIndex-1);
             this.children.push(new node(newState, this.blankIndex - 1, this));
         }
         if (Math.floor(this.blankIndex / 3) !== 0) {
             //Blank move up
-            let newState = Object.assign([], this.state);
+            let newState = this.state.slice();
             ArraySwapIndex(newState, this.blankIndex, this.blankIndex-3);
             this.children.push(new node(newState, this.blankIndex - 3, this));
         }
         if (Math.floor(this.blankIndex / 3) !== 2) {
             //Blank move down
-            let newState = Object.assign([], this.state);
+            let newState = this.state.slice();
             ArraySwapIndex(newState, this.blankIndex, this.blankIndex+3);
             this.children.push(new node(newState, this.blankIndex + 3, this));
         }
@@ -58,7 +70,7 @@ class node {
 
 
 abstract class searchMethod {
-    public openTable: node[];
+    public openTable: PriorityQueue<node>;
     public closedTable: {[id:string]: node};
 
     public currentNode: node;
@@ -66,10 +78,14 @@ abstract class searchMethod {
     private totalStep: number;
 
     constructor(initState: number[], currentBlank: number) {
-        this.openTable = [];
+        this.openTable = new PriorityQueue<node>({
+            comparator: function (a:node, b:node) {
+                return a.value - b.value;
+            },
+        });
         this.closedTable = {};
         this.currentNode = new node(initState, currentBlank, null);
-        this.openTable.push(this.currentNode);
+        this.openTable.queue(this.currentNode);
         this.next();
         this.totalStep = 0;
     }
@@ -79,19 +95,31 @@ abstract class searchMethod {
             return [this.currentNode.state, this.currentNode.blankIndex];
         }
         this.totalStep++;
-        let [newNode, index] = this.getLowestNode();
-        while (newNode.identifier in this.closedTable) {
-            this.openTable.splice(index, 1);
-            [newNode, index] = this.getLowestNode();
+        if (this.openTable.length === 0) {
+            alert("搜索失败");
+            throw "Empty open table";
         }
-        this.openTable.splice(index, 1);
+        let newNode = this.openTable.peek();
+        while ((newNode).identifier in this.closedTable) {
+            this.openTable.dequeue();
+            if (this.openTable.length === 0) {
+                alert("搜索失败");
+                throw "Empty open table";
+            }
+            newNode = this.openTable.peek();
+        }
+        this.openTable.dequeue();
         this.closedTable[newNode.identifier] = newNode;
         this.currentNode = newNode;
         let children = this.currentNode.getChildren();
         for (let child of children) {
-            this.addNewOpenNode(child);
+            this.addNewOpenNodeWithVal(child);
         }
         return [newNode.state, newNode.blankIndex];
+    }
+
+    public getLowestNode() : node|undefined {
+        return this.openTable.peek();
     }
 
     public runAll(): any {
@@ -113,56 +141,40 @@ abstract class searchMethod {
     }
 
     public get pathToCurrent(): node[] {
-        let result: node[] = [];
-        let curr: node|null = this.currentNode;
-        while (curr !== null) {
-            result.unshift(curr);
-            curr = curr.parent;
-        }
-        return result;
+        return this.currentNode.path;
     }
 
     public get steps() { return this.totalStep; }
 
-    //Returns node and index of the node in open table
-    public abstract getLowestNode(): [node, number];
-
-    public abstract addNewOpenNode(newNode: node): void;
+    public abstract addNewOpenNodeWithVal(newNode: node): void;
 
 }
 
 class aStarH1 extends searchMethod{
 
-    public getLowestNode(): [node, number] {
-        return [this.openTable[0], 0];
-    }
-
-    public addNewOpenNode(newNode: node): void {
-        this.openTable.push(newNode);
+    public addNewOpenNodeWithVal(newNode: node): void {
+        this.openTable.queue(newNode);
     }
 }
 
 class aStarH2 extends searchMethod{
 
-    public getLowestNode(): [node, number] {
-        return [this.openTable[0], 0];
-    }
-
-    public addNewOpenNode(newNode: node): void {
-        this.openTable.push(newNode);
+    public addNewOpenNodeWithVal(newNode: node): void {
+        if (!(newNode.identifier in this.closedTable)) {
+            this.openTable.queue(newNode);
+        }
     }
 }
 
 class bfs extends searchMethod {
 
-    public getLowestNode(): [node, number] {
-        return [this.openTable[0], 0];
-    }
-
-    public addNewOpenNode(newNode: node): void {
+    public addNewOpenNodeWithVal(newNode: node): void {
         if (!(newNode.identifier in this.closedTable)) {
-            this.openTable.push(newNode);
+            newNode.value = (<node>newNode.parent).value + 1;
+            this.openTable.queue(newNode);
         }
     }
 }
+
+
 

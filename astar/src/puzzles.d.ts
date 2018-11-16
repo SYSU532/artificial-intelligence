@@ -1,5 +1,9 @@
 
-declare var pieces: any[];
+declare interface block {
+    moveFunc: () => void;
+}
+
+declare var pieces: block[];
 
 declare var current_blank: number;
 

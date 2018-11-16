@@ -1,5 +1,5 @@
 /// <reference path="./aStar.ts" />
-/// <reference path="./aStarView.d.ts" />
+/// <reference path="./puzzles.d.ts" />
 
 let method: searchMethod;
 let runTimeout: number = -2;
@@ -15,8 +15,8 @@ function runBFS(): any {
 function showInfo(): any {
     $("#open-node").text(method.openTable.length.toString());
     $("#total-step").text(method.steps.toString());
-    let [lowestNode] = method.getLowestNode();
-    let lowNodeState = lowestNode.state.slice();
+    let lowestNode = method.getLowestNode();
+    let lowNodeState = (<node>lowestNode).state.slice();
     lowNodeState.forEach(function (_, index) {
         lowNodeState[index] += 1;
     });
@@ -52,9 +52,16 @@ function jqueryElemToNumSeq(arr: any[]): number[] {
     return result;
 }
 
+function autoRun() {
+    try {
+        goNext()
+    } catch { return; }
+    if (runTimeout !== -2)
+        setTimeout(autoRun, 2);
+}
+
 function goNext(): any {
     if (method.checkResult(method.currentNode.state)) {
-        clearInterval(runTimeout);
         runTimeout = -2;
         $("#button-area").append($("<button>").
         attr("id", "showpath").addClass("click").
@@ -80,7 +87,7 @@ function goNext(): any {
     current_blank = newBlank;
     printPicture(newSeq);
     if (method.checkResult(newSeq)) {
-        $("#message").text("搜索完成。步数："+method.steps);
+        $("#message").text("搜索完成。步数："+method.steps+", 路径长度："+method.pathToCurrent.length);
     }
 }
 
@@ -96,7 +103,7 @@ function addButtons() {
             $("#run-all").show();
             $(this).text("自动运行");
         } else {
-            runTimeout = setInterval(goNext, 1);
+            runTimeout = setTimeout(autoRun, 1);
             $(this).text("暂停运行");
             $("#next").hide();
             $("#run-all").hide();
@@ -108,10 +115,9 @@ function addButtons() {
         method.runAll();
         current_blank = method.currentNode.blankIndex;
         printPicture(method.currentNode.state);
-        $("#message").text("搜索完成。步数："+method.steps);
+        $("#message").text("搜索完成。步数："+method.steps+", 路径长度："+method.pathToCurrent.length);
         goNext();
         showInfo();
     }).text("直接获取"));
 }
-
 

@@ -1,6 +1,8 @@
 var current_blank;
 var pieces = [];
-var currentPictureFile = "r.jpg";
+var currentPictureFile = "assets/r.jpg";
+let sequence = [];
+let origin_blank;
 
 function addImage() {
     if (document.getElementById("file").files.length === 0)
@@ -115,6 +117,7 @@ function getParity(inversion, blankSpot) {
     return val % 2;
 }
 
+//Returns true if the sequence is not valid!
 function checkSequence(seq) {
     var originZeroEle = seq[current_blank];
     var sequence = seq.slice();
@@ -177,7 +180,7 @@ function startGame() {
     $(".search-btn").hide();
     $("#button-area").append($("<button>").attr("id", "reset").addClass("click").text("还原"));
     $("#reset").click(function() {
-        showPicture();
+        showPicture(sequence);
         $(".search-btn").show();
         $("#message").text("请选择需要的搜索模式以开始");
         $("#pause").remove();
@@ -188,9 +191,7 @@ function startGame() {
         $("#run-all").remove();
         clearInterval(runTimeout);
     });
-    var sequence = generateSequence();
-    while (checkSequence(sequence))
-        sequence = generateSequence();
+    current_blank = origin_blank;
     printPicture(sequence);
     //$("#button-area").append($("<button>").attr("id", "pause").addClass("click").text("显示原图"));
     $("#button-area").append($("<button>").attr("id", "next").addClass("click").click(goNext).text("下一结点"));
@@ -254,7 +255,13 @@ window.onload = function () {
     $("#switch-astar-h1").click(runAStarH1);
     $("#switch-astar-h2").click(runAStarH2);
     $("#message").text("请点击开始按钮以开始游戏");
+    sequence = generateSequence();
+    while (checkSequence(sequence))
+        sequence = generateSequence();
+    showPicture(sequence);
+    origin_blank = current_blank;
 };
+
 
 
 
