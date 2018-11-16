@@ -40,7 +40,6 @@ function runAStarH2(): any {
     let seq = jqueryElemToNumSeq(pieces);
     method = new aStarH2(seq, current_blank);
     showInfo();
-    runTimeout = setTimeout(goNext, 100);
     addButtons();
     $("#title").text("A星算法 H2")
 }
