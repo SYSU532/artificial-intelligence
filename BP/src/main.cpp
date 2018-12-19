@@ -7,6 +7,7 @@
 #include "testUtils.h"
 #include "NeuralNetwork.h"
 #include <vector>
+#include <random>
 #include <string>
 #include <cstring>
 
@@ -16,21 +17,35 @@ const char* dataPath = "../mnist/network.txt";
 
 int main(int argc, char** argv) {
     bool test = false, isPhoto = false;
+    int trainSize = -1;
     string filename;
-    if (argc >= 2 && strcmp(argv[1], "test") == 0) {
-        test = true;
+    if (argc >= 2 ) {
+        if (strcmp(argv[1], "test") == 0) {
+            test = true;
+        } else {
+            trainSize = atoi(argv[1]);
+        }
     }
     auto data = CImgMNistData::getInstance();
     if (!test) {
         cout << "start training..." << endl;
 
-        vector<int> initSize = {784, 100, 40, 10};
+        vector<int> initSize = {784, 80, 10};
         NeuralNetwork network(initSize);
 
         auto trainData = data->getTrainSet();
         auto trainLabels = data->getTrainBinaryLabels();
 
-        network.train(trainData, trainLabels, 20, 0.01);
+        random_shuffle(begin(trainData), end(trainData));
+
+        if (trainSize != -1) {
+            trainData = vector<vector<unsigned char>>(begin(trainData), begin(trainData) +
+                    trainSize);
+            trainLabels = vector<array<unsigned char, 10>>(begin(trainLabels), begin(trainLabels) +
+                                                                        trainSize);
+        }
+
+        network.train(trainData, trainLabels, 10, 0.001);
 
         network.save(dataPath);
 
