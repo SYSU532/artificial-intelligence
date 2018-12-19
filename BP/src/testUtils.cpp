@@ -34,13 +34,12 @@ int testImage(const vector<unsigned char> &imgData, NeuralNetwork &network) {
     int result = -1;
     double max = -1;
     for (int i = 0; i < 10; i++) {
-        cout << i << ": " << res[i] << " ";
+//        cout << i << ": " << res[i] << " ";
         if (res[i] > max) {
             max = res[i];
             result = i;
         }
     }
-    cout << endl;
     return result;
 }
 

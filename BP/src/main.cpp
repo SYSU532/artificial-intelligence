@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     if (argc >= 2 ) {
         if (strcmp(argv[1], "test") == 0) {
             test = true;
-        } else if(strcmp(argv[1], "file") && argc >= 3) {
+        } else if(strcmp(argv[1], "file") == 0 && argc >= 3) {
             filename = argv[2];
             test = true;
         } else {
@@ -72,13 +72,17 @@ int main(int argc, char** argv) {
             CImg<unsigned char> img(filename.c_str());
             img = toGreyScale(img);
             img.resize(28, 28);
-            vector<unsigned char> imgData;
+            img = -img;
+            img.threshold(135);
+
+            vector<unsigned char> imgData(28*28, 0);
             for (int i = 0; i < 28 * 28; i++) {
                 imgData[i] = img(i % 28, i / 28);
             }
 
             int result = testImage(imgData, network);
             cout << "Predict: " << result << endl;
+            img.display();
         }
     }
 

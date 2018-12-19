@@ -73,6 +73,12 @@
 		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImg.h">
 			<Option target="bp-mac"/>
 		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImgMNistData.cpp">
+			<Option target="bp-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImgMNistData.h">
+			<Option target="bp-mac"/>
+		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/NeuralNetwork.cpp">
 			<Option target="bp-mac"/>
 		</Unit>
@@ -80,12 +86,6 @@
 			<Option target="bp-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/main.cpp">
-			<Option target="bp-mac"/>
-		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/mnistData.cpp">
-			<Option target="bp-mac"/>
-		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/mnistData.h">
 			<Option target="bp-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/testUtils.cpp">
