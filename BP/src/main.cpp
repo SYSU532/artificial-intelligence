@@ -34,13 +34,11 @@ int main(int argc, char** argv) {
     if (!test) {
         cout << "start training..." << endl;
 
-        vector<int> initSize = {784, 80, 10};
+        vector<int> initSize = {784, 50, 10};
         NeuralNetwork network(initSize);
 
         auto trainData = data->getTrainSet();
         auto trainLabels = data->getTrainBinaryLabels();
-
-        shuffle(begin(trainData), end(trainData), std::mt19937(std::random_device()()));
 
         if (trainSize != -1) {
             trainData = vector<vector<unsigned char>>(begin(trainData), begin(trainData) +
@@ -49,7 +47,7 @@ int main(int argc, char** argv) {
                                                                         trainSize);
         }
 
-        network.train(trainData, trainLabels, 10, 0.2);
+        network.train(trainData, trainLabels, 20, 0.2);
 
         network.save(dataPath);
 
