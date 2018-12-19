@@ -49,7 +49,7 @@ function jqueryElemToNumSeq(arr: any[]): number[] {
     let result: number[] = [];
     for (var i = 0; i < 9; i++) {
         var className = arr[i].attr("class");
-        result.push(Math.abs(className.slice(className.length - 2));
+        result.push(Math.abs(className.slice(className.length - 2)));
     }
     return result;
 }

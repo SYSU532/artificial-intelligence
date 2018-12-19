@@ -161,9 +161,11 @@ class aStarH1 extends searchMethod{
             //by the distance of each misplaced number to its actual position.
             let estimatedMinCost = 0;
             for (let i = 0; i < newNode.state.length; i++) {
-                estimatedMinCost += Math.sqrt(Math.pow(i/3 - newNode.state[i]/3, 2) + Math.pow(i%3 - newNode.state[i]%3, 2));
+                if (newNode.state[i] !== i) {
+                    estimatedMinCost++;
+                }
             }
-            newNode.value = currentCost + estimatedMinCost;
+            newNode.value = currentCost + estimatedMinCost - 1;
 
             this.openTable.queue(newNode);
         }
