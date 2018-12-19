@@ -165,7 +165,7 @@ class aStarH1 extends searchMethod{
                     estimatedMinCost++;
                 }
             }
-            newNode.value = currentCost + estimatedMinCost - 1;
+            newNode.value = currentCost + estimatedMinCost;
 
             this.openTable.queue(newNode);
         }
