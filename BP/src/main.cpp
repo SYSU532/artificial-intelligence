@@ -6,6 +6,7 @@
 #include "CImgMNistData.h"
 #include "testUtils.h"
 #include "NeuralNetwork.h"
+#include <random>
 #include <vector>
 #include <random>
 #include <string>
@@ -22,6 +23,9 @@ int main(int argc, char** argv) {
     if (argc >= 2 ) {
         if (strcmp(argv[1], "test") == 0) {
             test = true;
+        } else if(strcmp(argv[1], "file") && argc >= 3) {
+            filename = argv[2];
+            test = true;
         } else {
             trainSize = atoi(argv[1]);
         }
@@ -36,7 +40,7 @@ int main(int argc, char** argv) {
         auto trainData = data->getTrainSet();
         auto trainLabels = data->getTrainBinaryLabels();
 
-        random_shuffle(begin(trainData), end(trainData));
+        shuffle(begin(trainData), end(trainData), std::mt19937(std::random_device()()));
 
         if (trainSize != -1) {
             trainData = vector<vector<unsigned char>>(begin(trainData), begin(trainData) +
@@ -45,7 +49,7 @@ int main(int argc, char** argv) {
                                                                         trainSize);
         }
 
-        network.train(trainData, trainLabels, 10, 0.001);
+        network.train(trainData, trainLabels, 10, 0.2);
 
         network.save(dataPath);
 
@@ -66,6 +70,17 @@ int main(int argc, char** argv) {
                 }
             }
             cout << "Correct rate: " << (double) correct / size * 100 << "%" << endl;
+        } else {
+            CImg<unsigned char> img(filename.c_str());
+            img = toGreyScale(img);
+            img.resize(28, 28);
+            vector<unsigned char> imgData;
+            for (int i = 0; i < 28 * 28; i++) {
+                imgData[i] = img(i % 28, i / 28);
+            }
+
+            int result = testImage(imgData, network);
+            cout << "Predict: " << result << endl;
         }
     }
 

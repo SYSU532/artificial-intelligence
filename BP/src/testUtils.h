@@ -16,4 +16,6 @@ CImg<unsigned char> dataToCImg(const std::vector<unsigned char> &img);
 
 int testImage(const std::vector<unsigned char> &imgData, NeuralNetwork &network);
 
+CImg<unsigned char> toGreyScale(const CImg<unsigned char> &src);
+
 #endif //BP_TESTUTILS_H
