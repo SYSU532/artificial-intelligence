@@ -417,6 +417,17 @@ release/moc_gamewindow.cpp: ../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QString \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/QSoundEffect \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/QMouseEvent \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QMessageBox \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qmessagebox.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QTimer \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qtimer.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../Chess/Chess.h \
 		../Chess/gamewindow.h
 	'E:\Qt5.4\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IE:/Qt5.4/5.4/mingw491_32/mkspecs/win32-g++ -IE:/Github/Artificial-Intelligence/Chess/Chess -IE:/Qt5.4/5.4/mingw491_32/include -IE:/Qt5.4/5.4/mingw491_32/include/QtMultimedia -IE:/Qt5.4/5.4/mingw491_32/include/QtWidgets -IE:/Qt5.4/5.4/mingw491_32/include/QtGui -IE:/Qt5.4/5.4/mingw491_32/include/QtNetwork -IE:/Qt5.4/5.4/mingw491_32/include/QtCore -I. ../Chess/gamewindow.h -o release/moc_gamewindow.cpp
@@ -571,6 +582,16 @@ release/main.o: ../Chess/main.cpp ../Chess/mainwindow.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QPushButton \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/QSoundEffect \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/QMouseEvent \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QMessageBox \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qmessagebox.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QTimer \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qtimer.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../Chess/Chess.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QApplication \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qapplication.h \
@@ -702,47 +723,7 @@ release/mainwindow.o: ../Chess/mainwindow.cpp ../Chess/mainwindow.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qmediaenumdebug.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qmetaobject.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtNetwork/qnetworkconfiguration.h \
-		ui_mainwindow.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QAction \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qaction.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QApplication \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qeventloop.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qframe.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qvalidator.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qslider.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QMenuBar \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QPushButton \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QStatusBar \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qstatusbar.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QToolBar \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindow.o ../Chess/mainwindow.cpp
 
 release/gamewindow.o: ../Chess/gamewindow.cpp ../Chess/gamewindow.h \
@@ -857,46 +838,19 @@ release/gamewindow.o: ../Chess/gamewindow.cpp ../Chess/gamewindow.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QString \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/QSoundEffect \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/QMouseEvent \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QMessageBox \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qmessagebox.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QTimer \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qtimer.h \
+		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../Chess/Chess.h \
-		ui_gamewindow.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/QVariant \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QAction \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qaction.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QApplication \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qeventloop.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QGraphicsView \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qgraphicsview.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qpainter.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qtextoption.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qpen.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qscrollarea.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qframe.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtGui/qvalidator.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qslider.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4/5.4/mingw491_32/include/QtWidgets/QWidget
+		ui_gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/gamewindow.o ../Chess/gamewindow.cpp
 
 release/Chess.o: ../Chess/Chess.cpp ../Chess/Chess.h

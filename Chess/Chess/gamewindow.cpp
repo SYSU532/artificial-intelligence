@@ -115,7 +115,7 @@ void GameWindow::aiMove(){
     if(result->dstID != -1)
         btn[result->dstID - 16]->hide();
     int realX = result->dstRow, realY = result->dstCol;
-    blackBtn[result->srcID]->setGeometry(realY*GAP, realX*GAP, 57, 57);
+    blackBtn[result->srcID]->setGeometry(realY*58, realX*58, 57, 57);
     blackBtnMapper->setMapping(blackBtn[result->srcID], QString::number(realX*10 + realY));
     // Check game over
     if(chessBoard::gameOver == true){
@@ -234,7 +234,7 @@ void GameWindow::mousePressEvent(QMouseEvent* event){
     resetBoardChessImg();
     // Judge Move
     if(judgeMove){
-        button->setGeometry(realY*GAP, realX*GAP, 57, 57);
+        button->setGeometry(realY*58, realX*58, 57, 57);
         mapper->setMapping(btn[targetIndex], QString::number(realX*10 + realY));
         board->playerMove(targetPos, make_pair(realX, realY));
         player.setSource(QUrl("qrc:/audios/Move.wav"));
@@ -298,7 +298,7 @@ void GameWindow::blackBtnPress(int index){
     resetBoardChessImg();
     // Judge Move
     if(judgeMove){
-        button->setGeometry(realY*GAP, realX*GAP, 57, 57);
+        button->setGeometry(realY*58, realX*58, 57, 57);
         mapper->setMapping(btn[targetIndex], QString::number(realX*10 + realY));
         bool over = board->eatBlackChess(realX, realY);
         board->playerMove(targetPos, make_pair(realX, realY));

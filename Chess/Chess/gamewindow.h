@@ -13,7 +13,7 @@
 #include <QTimer>
 #include "Chess.h"
 
-#define GAP 57
+#define GAP 60.0
 
 namespace Ui {
 class GameWindow;

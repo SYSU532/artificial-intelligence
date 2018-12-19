@@ -6,6 +6,7 @@
 #include "CImgMNistData.h"
 #include "testUtils.h"
 #include "NeuralNetwork.h"
+#include "NumberSegmentation.h"
 #include <random>
 #include <vector>
 #include <random>
@@ -55,34 +56,49 @@ int main(int argc, char** argv) {
         NeuralNetwork network(dataPath);
         if (filename.empty()) {
 
-            int size = data->getTestSize(), correct = 0;
+            int size = 4000, correct = 0;
             for (int i = 0; i < size; i++) {
-                auto tester = data->getTestImageData(i);
+                auto tester = data->getTestImageData(i + 5000);
 
                 int result = testImage(tester, network);
 
-                cout << "Predict: " << result << " Label: " << data->getTestLabel(i) << endl;
+                cout << "Predict: " << result << " Label: " << data->getTestLabel(i + 5000) << endl;
 
-                if (result == data->getTestLabel(i)) {
+                if (result == data->getTestLabel(i + 5000)) {
                     correct++;
                 }
             }
             cout << "Correct rate: " << (double) correct / size * 100 << "%" << endl;
         } else {
-            CImg<unsigned char> img(filename.c_str());
-            img = toGreyScale(img);
-            img.resize(28, 28);
-            img = -img;
-            img.threshold(135);
+            CImg<unsigned char> image(filename.c_str());
+            ImageSegmentation ism(image);
 
-            vector<unsigned char> imgData(28*28, 0);
-            for (int i = 0; i < 28 * 28; i++) {
-                imgData[i] = img(i % 28, i / 28);
+            ism.processBinaryImage();
+            ism.numberSegmentationMainProcess("output/");
+
+            int size = ism.getImageCount();
+            cout << size << endl;
+
+            string res = "";
+            for(int i=0; i<size; i++){
+                string path = "output/" + to_string(i);
+                path += ".bmp";
+                CImg<unsigned char> img(path.c_str());
+                img = toGreyScale(img);
+                img.resize(28, 28);
+                img.threshold(130);
+
+                vector<unsigned char> imgData(28*28, 0);
+                for (int i = 0; i < 28 * 28; i++) {
+                    imgData[i] = img(i % 28, i / 28);
+                }
+
+                int result = testImage(imgData, network);
+                cout << "Predict: " << result << endl;
+                res += to_string(result) + " ";
+                img.display();
             }
-
-            int result = testImage(imgData, network);
-            cout << "Predict: " << result << endl;
-            img.display();
+            cout << "Final Result: " << res << endl;
         }
     }
 
