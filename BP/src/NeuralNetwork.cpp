@@ -5,6 +5,7 @@
 #include "NeuralNetwork.h"
 #include <cmath>
 #include <ctime>
+#include <assert.h>
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
