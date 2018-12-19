@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/local/Cellar/cmake/3.12.3/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -122,6 +122,33 @@ bp-mac: cmake_check_build_system
 bp-mac/fast:
 	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/build
 .PHONY : bp-mac/fast
+
+src/CImgMNistData.o: src/CImgMNistData.cpp.o
+
+.PHONY : src/CImgMNistData.o
+
+# target to build an object file
+src/CImgMNistData.cpp.o:
+	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/CImgMNistData.cpp.o
+.PHONY : src/CImgMNistData.cpp.o
+
+src/CImgMNistData.i: src/CImgMNistData.cpp.i
+
+.PHONY : src/CImgMNistData.i
+
+# target to preprocess a source file
+src/CImgMNistData.cpp.i:
+	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/CImgMNistData.cpp.i
+.PHONY : src/CImgMNistData.cpp.i
+
+src/CImgMNistData.s: src/CImgMNistData.cpp.s
+
+.PHONY : src/CImgMNistData.s
+
+# target to generate assembly for a file
+src/CImgMNistData.cpp.s:
+	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/CImgMNistData.cpp.s
+.PHONY : src/CImgMNistData.cpp.s
 
 src/NeuralNetwork.o: src/NeuralNetwork.cpp.o
 
@@ -177,33 +204,6 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/mnistData.o: src/mnistData.cpp.o
-
-.PHONY : src/mnistData.o
-
-# target to build an object file
-src/mnistData.cpp.o:
-	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/mnistData.cpp.o
-.PHONY : src/mnistData.cpp.o
-
-src/mnistData.i: src/mnistData.cpp.i
-
-.PHONY : src/mnistData.i
-
-# target to preprocess a source file
-src/mnistData.cpp.i:
-	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/mnistData.cpp.i
-.PHONY : src/mnistData.cpp.i
-
-src/mnistData.s: src/mnistData.cpp.s
-
-.PHONY : src/mnistData.s
-
-# target to generate assembly for a file
-src/mnistData.cpp.s:
-	$(MAKE) -f CMakeFiles/bp-mac.dir/build.make CMakeFiles/bp-mac.dir/src/mnistData.cpp.s
-.PHONY : src/mnistData.cpp.s
-
 src/testUtils.o: src/testUtils.cpp.o
 
 .PHONY : src/testUtils.o
@@ -240,15 +240,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... bp-mac"
+	@echo "... src/CImgMNistData.o"
+	@echo "... src/CImgMNistData.i"
+	@echo "... src/CImgMNistData.s"
 	@echo "... src/NeuralNetwork.o"
 	@echo "... src/NeuralNetwork.i"
 	@echo "... src/NeuralNetwork.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/mnistData.o"
-	@echo "... src/mnistData.i"
-	@echo "... src/mnistData.s"
 	@echo "... src/testUtils.o"
 	@echo "... src/testUtils.i"
 	@echo "... src/testUtils.s"

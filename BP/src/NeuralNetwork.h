@@ -16,18 +16,15 @@ private:
     int layers;
     std::vector<int> sizes;
 
-    std::vector<std::vector<double>> biases;
-
     //Use to fast init a zero temp variable.
-    std::vector<std::vector<double>> zeroBiases;
     std::vector<CImg<double>> zeroWeights;
 
     //We use a CImg object as a matrix in here
     std::vector<CImg<double>> weights;
 
-    void updateWithMiniBatch(const std::vector<std::vector<unsigned char>> &data,
-                             const std::vector<std::array<unsigned char, 10>> &labels,
-                             double eta);
+    void forward(const std::vector<unsigned char> &testData,
+                                      std::vector<CImg<double>> &inputs,
+                                      std::vector<CImg<double>> &outputs);
 
 
 public:
@@ -39,14 +36,10 @@ public:
                const std::vector<std::array<unsigned char, 10>> &labels,
                int iterations, double eta);
 
-    void backPropagate(const std::vector<unsigned char> &data,
-                       const std::array<unsigned char, 10> &label,
-                       std::vector<std::vector<double>> &deltaBiases,
-                       std::vector<CImg<double>> &deltaWeights);
 
     void save(const char *filename);
 
-    std::array<double, 10> predict(std::vector<unsigned char> testData);
+    std::array<double, 10> predict(const std::vector<unsigned char> &testData);
 
 };
 

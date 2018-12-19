@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "mnistData.h"
+#include "CImgMNistData.h"
 #include "testUtils.h"
 #include "NeuralNetwork.h"
 #include <vector>
@@ -20,36 +20,37 @@ int main(int argc, char** argv) {
     if (argc >= 2 && strcmp(argv[1], "test") == 0) {
         test = true;
     }
-    auto data = mnistData::getInstance();
+    auto data = CImgMNistData::getInstance();
     if (!test) {
         cout << "start training..." << endl;
 
-        vector<int> initSize = {784, 30, 10};
+        vector<int> initSize = {784, 100, 40, 10};
         NeuralNetwork network(initSize);
 
         auto trainData = data->getTrainSet();
         auto trainLabels = data->getTrainBinaryLabels();
 
-        network.train(trainData, trainLabels, 10000, 0.05);
+        network.train(trainData, trainLabels, 20, 0.01);
 
         network.save(dataPath);
+
     } else {
         NeuralNetwork network(dataPath);
         if (filename.empty()) {
 
-            int size = data->getTestSize();
+            int size = data->getTestSize(), correct = 0;
             for (int i = 0; i < size; i++) {
                 auto tester = data->getTestImageData(i);
-                cout << data->getTestLabel(i) << endl;
 
-                auto res = network.predict(tester);
-                auto labels = data->getTestBinaryLabels();
-                for (int i = 0; i < 10; i++) {
-                    cout << i << ": " << res[i] << " ";
+                int result = testImage(tester, network);
+
+                cout << "Predict: " << result << " Label: " << data->getTestLabel(i) << endl;
+
+                if (result == data->getTestLabel(i)) {
+                    correct++;
                 }
-                cout << endl;
-                dataToCImg(tester).display();
             }
+            cout << "Correct rate: " << (double) correct / size * 100 << "%" << endl;
         }
     }
 

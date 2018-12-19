@@ -19,19 +19,6 @@ NeuralNetwork::NeuralNetwork(std::vector<int> sizes) {
     this->sizes = sizes;
     default_random_engine generator;
     normal_distribution<double> nDist;
-    biases.reserve(layers-1);
-    zeroBiases.reserve(layers-1);
-    //Generate biases, the first layer has no biases.
-    for (int i = 1; i < layers; i++) {
-        vector<double> tempBias;
-        tempBias.reserve(sizes[i]);
-        for (int k = 0; k < sizes[i]; k++) {
-            double bias = nDist(generator);
-            tempBias.push_back(bias);
-        }
-        biases.push_back(tempBias);
-        zeroBiases.push_back(vector<double>(sizes[i], 0));
-    }
 
     //Generate weights
     weights.reserve(static_cast<unsigned long>(layers - 1));
@@ -60,19 +47,6 @@ NeuralNetwork::NeuralNetwork(const char *filename) {
         file >> size;
         sizes.push_back(size);
     }
-    biases.reserve(layers-1);
-    zeroBiases.reserve(layers-1);
-    for (int i = 1; i < layers; i++) {
-        vector<double> temp;
-        temp.reserve(sizes[i]);
-        for (int k = 0; k < sizes[i]; k++) {
-            double bias;
-            file >> bias;
-            temp.push_back(bias);
-        }
-        biases.push_back(temp);
-        zeroBiases.emplace_back(sizes[i], 0);
-    }
 
     weights.reserve(layers - 1);
     zeroWeights.reserve(static_cast<unsigned long>(layers - 1));
@@ -99,11 +73,6 @@ void NeuralNetwork::save(const char *filename) {
     for (int i = 0; i < sizes.size(); i++) {
         file << sizes[i] << " ";
     }
-    for (int i = 0; i < biases.size(); i++) {
-        for (int k = 0; k < biases[i].size(); k++) {
-            file << biases[i][k] << " ";
-        }
-    }
     for (int i = 0; i < weights.size(); i++) {
         cimg_forXY(weights[i], x, y) {
                 file << weights[i](x, y) << " ";
@@ -112,33 +81,87 @@ void NeuralNetwork::save(const char *filename) {
     file << endl;
 }
 
+double getError(const CImg<double> &out, const std::array<unsigned char, 10> &label) {
+    assert(out.height() == 10 && out.width() == 1);
+    double res = 0;
+    for (int i = 0; i < 10; i++) {
+        double diff = out(0, i) - label[i];
+        res += diff * diff;
+    }
+    return res;
+}
+
+//inplace sigmoid
+CImg<double> sigmoid(const CImg<double> &input) {
+    CImg<double> result(input.width(), input.height(), 1, 1, 0);
+    cimg_forXY(input, x, y) {
+            result(x, y) = 1 / (1 + exp(-input(x, y)));
+        }
+    return result;
+}
+
+
+//Derivative of sigmoid
+CImg<double> sigmoidPrime(const CImg<double> &input) {
+    auto sig = sigmoid(input);
+    return sig.mul(-sig + 1);
+}
+
+const double thresh = 0.005;
+
 //eta is the learning rate
 void NeuralNetwork::train(const std::vector<std::vector<unsigned char>> &data,
                           const std::vector<std::array<unsigned char, 10>> &labels,
                           int iterations, double eta) {
     assert(data.size() == labels.size());
-    assert(data.size() % miniBatchSize == 0);
     int n = static_cast<int>(data.size());
-    //t is the iterations count
-    int t = n / miniBatchSize;
 
-    for (int i = 0; i < t; i++) {
-        int startIndex = i * miniBatchSize, endIndex = (i + 1) * miniBatchSize;
-        std::vector<std::vector<unsigned char>> miniBatch(begin(data) + startIndex,
-                                                          begin(data) + endIndex);
-        std::vector<std::array<unsigned char, 10>> miniLabels(begin(labels) + startIndex,
-                                                              begin(labels) + endIndex);
-        for (int k = 0; k < 10; k++) {
-            updateWithMiniBatch(miniBatch, miniLabels, eta);
-            cout << "\r Current Trained: " << (double)k / 10 * 100 << "%." << flush;
+    for (int i = 0; i < n; i++) {
+        for (int t = 0; t < iterations; t++) {
+            auto label = labels[i];
+            CImg<double> labelData(1, 10, 1, 1, 0);
+            for (int k = 0; k < 10; k++) {
+                labelData(0, k) = label[k];
+            }
+            vector<CImg<double>> in, out;
+            forward(data[i], in, out);
+
+            CImg<double> input(1, data[i].size(), 1, 1, 0);
+            for (int k = 0; k < data[i].size(); k++) {
+                input(0, k) = (double)data[i][k] / 255;
+            }
+
+            auto error = getError(out[out.size() - 1], label);
+            if (error < thresh) break;
+
+            //order is backward in these vectors
+            vector<CImg<double>> gradients, deltas;
+
+            gradients.push_back(out[out.size()-1].get_mul(-out[out.size()-1]+1).
+                    get_mul(labelData - out[out.size()-1]));
+
+            for (int i = 1; i < layers - 1; i++) {
+                auto gradient = sigmoidPrime(in[in.size() - i - 1]);
+                gradient += weights[weights.size()-i].get_transpose() * gradients[i-1];
+                gradients.push_back(gradient);
+            }
+
+            for (int i = 0; i < layers - 1; i++) {
+                auto delta = gradients[i] * (out[out.size()-i-2].get_transpose())
+                        * eta;
+                deltas.push_back(delta);
+                weights[weights.size() - 1- i] += delta;
+            }
+
         }
-        cout << "\r                                      ";
-        cout << "\rTrained " << i << " batch(es), " << t - i - 1 << " to go." << endl;
+        cout << "\rSequentially trained " << i + 1 << " samples out of a total of "
+                                                      << n << " samples." << flush;
     }
+    cout << endl;
 
 }
 
-CImg<double> dotProduct(const CImg<double> &a, const CImg<double>& b) {
+CImg<double> dotProduct(const CImg<double> &a, const CImg<double> &b) {
     assert(a.width() == b.height());
     CImg<double> result(b.width(), a.height(), 1, 1, 0);
     for (int i = 0; i < a.height(); i++) {
@@ -152,19 +175,7 @@ CImg<double> dotProduct(const CImg<double> &a, const CImg<double>& b) {
     return result;
 }
 
-//inplace sigmoid
-CImg<double> sigmoid(const CImg<double> &input) {
-    CImg<double> result(input.width(), input.height(), 1, 1, 0);
-    cimg_forXY(input, x, y) {
-        result(x, y) = 1 / (1 + exp(-input(x, y)));
-    }
-    return result;
-}
 
-CImg<double> sigmoidPrime(const CImg<double>& input) {
-    auto sig = sigmoid(input);
-    return sig.mul(-sig + 1);
-}
 
 CImg<double> labelsToCImg(const array<unsigned char, 10> &labels) {
     CImg<double> res(1, 10, 1, 1, 0);
@@ -175,92 +186,14 @@ CImg<double> labelsToCImg(const array<unsigned char, 10> &labels) {
 }
 
 
-//Update biases and weights
-void NeuralNetwork::updateWithMiniBatch(const std::vector<std::vector<unsigned char>> &data,
-                                        const std::vector<std::array<unsigned char, 10>> &labels,
-                                        double eta) {
-    vector<vector<double>> newBiases(zeroBiases);
-    vector<CImg<double>> newWeights(zeroWeights);
+std::array<double, 10> NeuralNetwork::predict(const std::vector<unsigned char> &testData) {
 
-    for (int i = 0; i < data.size(); i++) {
-        vector<vector<double>> deltaBiases;
-        vector<CImg<double>> deltaWeights;
-        backPropagate(data[i], labels[i], deltaBiases, deltaWeights);
-        for (int k = 0; k < biases.size(); k++) {
-            for (int j = 0; j < biases[k].size(); j++) {
-                newBiases[k][j] += deltaBiases[k][j];
-            }
-        }
-        for (int k = 0; k < deltaWeights.size(); k++) {
-            newWeights[k] += deltaWeights[k];
-        }
-    }
-    double rate = eta / data.size();
-    for (int i = 0; i < weights.size(); i++) {
-        weights[i] -= rate * newWeights[i];
-    }
-    for (int i = 0; i < biases.size(); i++) {
-        for (int k = 0; k < biases[i].size(); k++) {
-            biases[i][k] -= rate * newBiases[i][k];
-        }
-    }
-
-}
-
-void NeuralNetwork::backPropagate(const vector<unsigned char> &data,
-                                  const array<unsigned char, 10> &label,
-                                  vector<vector<double>> &deltaBiases,
-                                  vector<CImg<double>> &deltaWeights) {
-    deltaBiases = zeroBiases;
-    deltaWeights = zeroWeights;
-
-    auto y = labelsToCImg(label);
-
-    vector<CImg<double>> activations;
-    vector<CImg<double>> zs;
-
-    CImg<double> input(1, data.size(), 1, 1, 0);
-    for (int i = 0; i < data.size(); i++) {
-        input(0, i) = data[i];
-    }
-    activations.push_back(input);
-
-    for (int i = 0; i < layers - 1; i++) {
-        CImg<double> newInput = (weights[i] * input);
-        cimg_forX(newInput, x) {
-            newInput(x, 1) += biases[i][x];
-        }
-        zs.push_back(newInput);
-        input = sigmoid(newInput);
-        activations.push_back(input);
-    }
-
-    //Start backward
-    auto delta = activations[activations.size() - 1] - y;
-    delta.mul(sigmoidPrime(zs[zs.size() - 1]));
-    memcpy(deltaBiases[deltaBiases.size() - 1].data(), delta.data(),
-           delta.height() * sizeof(double));
-    deltaWeights[deltaWeights.size() - 1] = delta * activations[activations.size()-2].get_transpose();
-    for (int i = layers - 3; i >= 0; i--) {
-        auto z = zs[i];
-        auto sp = sigmoidPrime(z);
-        delta = (weights[i+1].get_transpose() * delta).get_mul(sp);
-        memcpy(deltaBiases[i].data(), delta.data(), delta.height() * sizeof(double));
-        deltaWeights[i] = delta * activations[i].get_transpose();
-    }
-}
-
-
-std::array<double, 10> NeuralNetwork::predict(std::vector<unsigned char> testData) {
     CImg<double> input(1, testData.size(), 1, 1, 0);
     for (int k = 0; k < testData.size(); k++) {
-        input(0, k) = testData[k];
+        input(0, k) = (double)testData[k] / 255;
     }
     for (int i = 0; i < layers - 1; i++) {
         input = (weights[i] * input);
-        for (int k = 0; k < biases[i].size(); k++) {
-            input(0, k) += biases[i][k];
-        }
         input = sigmoid(input);
     }
     array<double, 10> result{};
@@ -268,6 +201,23 @@ std::array<double, 10> NeuralNetwork::predict(std::vector<unsigned char> testDat
         result[i] = input(0, i);
     }
     return result;
+}
+
+void NeuralNetwork::forward(const std::vector<unsigned char> &testData,
+                                                 std::vector<CImg<double>> &inputs,
+                                                 std::vector<CImg<double>> &outputs) {
+
+    CImg<double> input(1, testData.size(), 1, 1, 0);
+    for (int k = 0; k < testData.size(); k++) {
+        input(0, k) = (double)testData[k] / 255;
+    }
+    outputs.push_back(input);
+    for (int i = 0; i < layers - 1; i++) {
+        input = (weights[i] * input);
+        inputs.push_back(input);
+        input = sigmoid(input);
+        outputs.push_back(input);
+    }
 }
 
 

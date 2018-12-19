@@ -2,7 +2,7 @@
 // Created by Miguel Chan on 2018/12/16.
 //
 
-#include "mnistData.h"
+#include "CImgMNistData.h"
 #include <cstdlib>
 #include <array>
 #include <fstream>
@@ -10,16 +10,16 @@
 
 using namespace std;
 
-shared_ptr<mnistData> mnistData::singleton = nullptr;
+shared_ptr<CImgMNistData> CImgMNistData::singleton = nullptr;
 
 const char* trainImagePath = "./../mnist/train-images-idx3-ubyte";
 const char* testImagePath = "./../mnist/t10k-images-idx3-ubyte";
 const char* trainLabelPath = "./../mnist/train-labels-idx1-ubyte";
 const char* testLabelPath = "./../mnist/t10k-labels-idx1-ubyte";
 
-std::shared_ptr<mnistData> mnistData::getInstance() {
+std::shared_ptr<CImgMNistData> CImgMNistData::getInstance() {
     if (singleton == nullptr) {
-        singleton = shared_ptr<mnistData>(new mnistData);
+        singleton = shared_ptr<CImgMNistData>(new CImgMNistData);
     }
     return singleton;
 }
@@ -91,7 +91,7 @@ void readLabelFile(ifstream& labelFile, vector<unsigned char>& labelList, std::v
 }
 
 
-mnistData::mnistData() {
+CImgMNistData::CImgMNistData() {
     ifstream trainImgFile(trainImagePath, ios::binary);
     ifstream testImgFile(testImagePath, ios::binary);
     ifstream trainLabelFile(trainLabelPath, ios::binary);
@@ -104,51 +104,51 @@ mnistData::mnistData() {
     readLabelFile(testLabelFile, testLabels, testBinaryLabels);
 }
 
-CImg<unsigned char> mnistData::getTestImage(int index) {
+CImg<unsigned char> CImgMNistData::getTestImage(int index) {
     return testImg[index];
 }
 
-CImg<unsigned char> mnistData::getTrainImage(int index) {
+CImg<unsigned char> CImgMNistData::getTrainImage(int index) {
     return trainImg[index];
 }
 
-int mnistData::getTestLabel(int index) {
+int CImgMNistData::getTestLabel(int index) {
     return testLabels[index];
 }
 
-int mnistData::getTrainLabel(int index) {
+int CImgMNistData::getTrainLabel(int index) {
     return trainLabels[index];
 }
 
-std::vector<unsigned char> mnistData::getTestImageData(int index) {
+std::vector<unsigned char> CImgMNistData::getTestImageData(int index) {
     return testSet[index];
 }
 
-std::vector<unsigned char> mnistData::getTrainImageData(int index) {
+std::vector<unsigned char> CImgMNistData::getTrainImageData(int index) {
     return trainSet[index];
 }
 
-std::vector<std::vector<unsigned char>> mnistData::getTrainSet() {
+std::vector<std::vector<unsigned char>> CImgMNistData::getTrainSet() {
     return trainSet;
 }
 
-std::vector<std::vector<unsigned char>> mnistData::getTestSet() {
+std::vector<std::vector<unsigned char>> CImgMNistData::getTestSet() {
     return testSet;
 }
 
-std::vector<std::array<unsigned char, 10>> mnistData::getTestBinaryLabels() {
+std::vector<std::array<unsigned char, 10>> CImgMNistData::getTestBinaryLabels() {
     return testBinaryLabels;
 }
 
-std::vector<std::array<unsigned char, 10>> mnistData::getTrainBinaryLabels() {
+std::vector<std::array<unsigned char, 10>> CImgMNistData::getTrainBinaryLabels() {
     return trainBinaryLabels;
 }
 
-int mnistData::getTestSize() {
+int CImgMNistData::getTestSize() {
     return testImg.size();
 }
 
-int mnistData::getTrainSize() {
+int CImgMNistData::getTrainSize() {
     return trainImg.size();
 }
 

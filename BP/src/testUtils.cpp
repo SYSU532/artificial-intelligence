@@ -25,3 +25,18 @@ CImg<unsigned char> dataToCImg(const std::vector<unsigned char> &img) {
     }
     return result;
 }
+
+int testImage(const vector<unsigned char> &imgData, NeuralNetwork &network) {
+
+
+    auto res = network.predict(imgData);
+    int result = -1;
+    double max = -1;
+    for (int i = 0; i < 10; i++) {
+        if (res[i] > max) {
+            max = res[i];
+            result = i;
+        }
+    }
+    return result;
+}
