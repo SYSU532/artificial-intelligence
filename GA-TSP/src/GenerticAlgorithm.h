@@ -18,7 +18,7 @@
 #define CROSS_PRO 0.8
 #define CITY_NUMBER 130
 #define GROUP_SIZE 500
-#define ITER_TIME 8000
+#define ITER_TIME 50
 
 using namespace std;
 
@@ -35,6 +35,11 @@ struct linearGen{
 	}
 };
 
+struct Node{
+	double x, y;
+	int num;
+};
+
 struct Path{
 	// Path's basic infos
 	double length;
@@ -49,10 +54,31 @@ struct Path{
 		calculateLength();
 	}
 
+	void initDistance(){
+	    vector<Node> cityNodes;
+
+	    ifstream in("src/cities.txt");
+	    for(int i=0; i<CITY_NUMBER; i++){
+	        cityNodes.push_back(Node());
+	        in >> cityNodes[i].num >> cityNodes[i].x >> cityNodes[i].y;
+	    }
+	    for(int i=0; i<CITY_NUMBER; i++){
+	        distanceTable[i][i] = (double)INT_MAX;
+	        for(int j=i+1; j<CITY_NUMBER; j++){
+	            double dist = sqrt((cityNodes[i].x - cityNodes[j].x) * (cityNodes[i].x - cityNodes[j].x) + 
+	                               (cityNodes[i].y - cityNodes[j].y) * (cityNodes[i].y - cityNodes[j].y));
+	            distanceTable[i][j] = distanceTable[j][i] = dist;
+	        }
+	    }
+	}
+
 	// Calculating path's length
 	void calculateLength(){
 		length = 0;
 		// Interation on path
+		if(distanceTable[0][0] == 0.0){
+			initDistance();
+		}
 		for(int i=1; i<CITY_NUMBER; i++){
 			length += distanceTable[path[i-1] - 1][path[i]-1];
 		}
@@ -125,18 +151,14 @@ struct Path{
 
 };
 
-struct Node{
-	double x, y;
-	int num;
-};
-
 class GA{
 public:
 	GA();
 	Path getShortestPath();
-	Path getCurrentBestPath(){
-		this->bestPath.calculateLength();
-		return this->bestPath;
+	void clearPath(){
+		for(int i=0; i<GROUP_SIZE; i++){
+			group[i] = Path();
+		}
 	}
 
 private:

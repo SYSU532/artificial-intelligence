@@ -8,8 +8,6 @@ var app = express();
 const GA = require('./build/Release/GA.node');
 const ITER_NUM = 10000;
 
-GA.init();
-
 app.use(express.static(path.join(__dirname, '/Web/')))
 app.set('views', path.join(__dirname, '/Web/'));
 app.engine('html', require('ejs').__express);
@@ -24,6 +22,10 @@ app.get("/", function(req, res, next){
 app.get("/GA-Data", function(req, res, next){
 	var result = GA.getBestPath();
 	res.end(result);
+});
+
+app.get("/Init-Data", function(req, res, next){
+	GA.clear();
 });
 
 app.get("/Init-Pos", function(req, res, next){

@@ -95,11 +95,15 @@ void GameWindow::initActions(){
 }
 
 bool GameWindow::isGameOver(){
-    int res = QMessageBox::question(NULL, "Question", "游戏结束，重新开始游戏?", QMessageBox::Yes | QMessageBox::No);
+    string result;
+    if(playerSide == true){
+        result = "游戏结束，玩家获胜";
+    }else {
+        result = "游戏结束，AI获胜";
+    }
+    int res = QMessageBox::question(NULL, "Game Over", result.c_str(), QMessageBox::Yes);
 
-    this->hide();
-    turn++;
-    emit GameOver();
+    this->close();
 }
 
 void GameWindow::setGameOver(bool over){

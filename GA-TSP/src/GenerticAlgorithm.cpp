@@ -27,12 +27,9 @@ Path GA::getShortestPath(){
 				bestResult = group[j];
 			}
 		}
-		bestResult.calculateLength();
-		cout << bestResult.length << endl;
 	}
 	writePathFile(bestResult);
 	bestResult.calculateLength();
-	cout << bestResult.length << endl;
 	return bestResult;
 }
 
