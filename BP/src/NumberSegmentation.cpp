@@ -1,5 +1,12 @@
 #include "NumberSegmentation.h"
+
+#ifdef WIN32
 #include <direct.h>
+#endif
+
+#ifdef LINUX
+#include <dirent.h>
+#endif
 
 int lineColor[3]{ 255, 0, 0 };
 

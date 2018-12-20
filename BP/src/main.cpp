@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
     if (!test) {
         cout << "start training..." << endl;
 
-        vector<int> initSize = {784, 50, 10};
+        vector<int> initSize = {784, 25, 10};
         NeuralNetwork network(initSize);
 
         auto trainData = data->getTrainSet();
