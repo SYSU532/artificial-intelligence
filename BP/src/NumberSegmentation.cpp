@@ -1,13 +1,5 @@
 #include "NumberSegmentation.h"
 
-#ifdef WIN32
-#include <direct.h>
-#endif
-
-#ifdef LINUX
-#include <dirent.h>
-#endif
-
 int lineColor[3]{ 255, 0, 0 };
 
 ImageSegmentation::ImageSegmentation(const CImg<int>& _SrcImg) {
@@ -169,8 +161,6 @@ void ImageSegmentation::processBinaryImage() {
 
 // Startup of the whole image sementation process
 void ImageSegmentation::numberSegmentationMainProcess(const string baseAddress) {
-	if (_access(baseAddress.c_str(), 0) == -1)
-		_mkdir(baseAddress.c_str());
 	basePath = baseAddress + "/";
 
 	findDividingLine();
