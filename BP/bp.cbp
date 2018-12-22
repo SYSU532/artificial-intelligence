@@ -44,7 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/mig/Desktop/大三上/artificial-intelligence/BP/."/>
+					<Add directory="/Users/mig/Desktop/大三上/artificial-intelligence/bp/."/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/artificial-intelligence/BP/Makefile&quot;  VERBOSE=1 bp-mac"/>
@@ -60,7 +60,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/mig/Desktop/大三上/artificial-intelligence/BP/."/>
+					<Add directory="/Users/mig/Desktop/大三上/artificial-intelligence/bp/."/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/artificial-intelligence/BP/Makefile&quot;  VERBOSE=1 bp-mac/fast"/>
@@ -70,31 +70,43 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImg.h">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/CImg.h">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImgMNistData.cpp">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/CImgMNistData.cpp">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/CImgMNistData.h">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/CImgMNistData.h">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/NeuralNetwork.cpp">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NeuralNetwork.cpp">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/NeuralNetwork.h">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NeuralNetwork.h">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/main.cpp">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NeuralNetworkTest.cpp">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/testUtils.cpp">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NeuralNetworkTest.h">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/src/testUtils.h">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NumberSegmentation.cpp">
 			<Option target="bp-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/BP/CMakeLists.txt">
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/NumberSegmentation.h">
+			<Option target="bp-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/main.cpp">
+			<Option target="bp-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/testUtils.cpp">
+			<Option target="bp-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/src/testUtils.h">
+			<Option target="bp-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/artificial-intelligence/bp/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

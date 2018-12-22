@@ -10,12 +10,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 if (APPLE)
     set (CMAKE_CXX_FLAGS "-lX11 -L/usr/X11/lib -I/usr/X11/include")
     add_executable(bp-mac
-            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp)
+            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp src/NeuralNetworkTest.cpp src/NeuralNetworkTest.h)
 endif (APPLE)
 
 if(UNIX AND NOT APPLE)
     add_executable(bp-linux
-            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp)
+            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp src/NeuralNetworkTest.cpp src/NeuralNetworkTest.h)
     set (CMAKE_CXX_FLAGS "-lX11 -pthread")
     message(STATUS "Looking for X11...")
     find_package(X11 REQUIRED)
@@ -27,7 +27,7 @@ if (WIN32)
     set (CMAKE_CXX_FLAGS "-lgdi32")
     set (CMAKE_SHARED_LINKER_FLAGS "-lgdi32")
     add_executable(bp
-            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp)
+            src/CImg.h src/CImgMNistData.cpp src/CImgMNistData.h src/main.cpp src/NeuralNetwork.cpp src/NeuralNetwork.h src/testUtils.cpp src/testUtils.h src/NumberSegmentation.h src/NumberSegmentation.cpp src/NeuralNetworkTest.cpp src/NeuralNetworkTest.h)
 endif(WIN32)
 
 include_directories(.)

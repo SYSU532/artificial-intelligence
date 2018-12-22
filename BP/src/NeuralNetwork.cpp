@@ -3,6 +3,7 @@
 //
 
 #include "NeuralNetwork.h"
+#include "NeuralNetworkTest.h"
 #include <cmath>
 #include <ctime>
 #include <assert.h>
@@ -116,6 +117,8 @@ void NeuralNetwork::train(const std::vector<std::vector<unsigned char>> &data,
                           int iterations, double eta) {
     assert(data.size() == labels.size());
     int n = static_cast<int>(data.size());
+    double correctRate = testCorrectRate(*this);
+    correctRates.push_back(correctRate);
 
     for (int i = 0; i < n; i++) {
         for (int t = 0; t < iterations; t++) {
@@ -155,11 +158,22 @@ void NeuralNetwork::train(const std::vector<std::vector<unsigned char>> &data,
             }
 
         }
-        cout << "\rSequentially trained " << i + 1 << " samples out of a total of "
-                                                      << n << " samples." << flush;
+
+        if ((i + 1) % 1000 == 0) {
+            cout << "\r                                            "
+                    << "                                           ";
+            cout << "\rRecalculating correct rate..." << flush;
+            correctRate = testCorrectRate(*this);
+            correctRates.push_back(correctRate);
+        }
+
+        cout << "\rTrained " << i + 1 << " samples out of a total of "
+                                                      << n << " samples. Correct rate: "
+                                                              << correctRate << "%."  << flush;
     }
     cout << endl;
 
+    rateGraph = drawRateGraph(correctRates);
 }
 
 CImg<double> dotProduct(const CImg<double> &a, const CImg<double> &b) {
@@ -219,6 +233,10 @@ void NeuralNetwork::forward(const std::vector<unsigned char> &testData,
         input = sigmoid(input);
         outputs.push_back(input);
     }
+}
+
+CImg<unsigned char> NeuralNetwork::getRateGraph() {
+    return rateGraph;
 }
 
 

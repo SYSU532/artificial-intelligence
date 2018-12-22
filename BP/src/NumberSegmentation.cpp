@@ -546,7 +546,7 @@ void ImageSegmentation::saveSingleNumberImageAndImglist(int barItemIndex) {
 			imglisttxt += string(shortImgName);
 
 			char addr[200];
-			sprintf(addr, "output/%d%s", imageOrder++, postfix.c_str());
+			sprintf(addr, "../output/%d%s", imageOrder++, postfix.c_str());
 			singleNum.save(addr);
 
 			pointPosListSetForDisplay.push_back(pointPosListSet[i]);

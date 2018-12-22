@@ -16,6 +16,7 @@
 using namespace std;
 
 const char* dataPath = "../mnist/network.txt";
+const char* graphPath = "../mnist/rateGraph.bmp";
 
 int main(int argc, char** argv) {
     bool test = false, isPhoto = false;
@@ -35,7 +36,7 @@ int main(int argc, char** argv) {
     if (!test) {
         cout << "start training..." << endl;
 
-        vector<int> initSize = {784, 25, 10};
+        vector<int> initSize = {784, 30, 10};
         NeuralNetwork network(initSize);
 
         auto trainData = data->getTrainSet();
@@ -52,19 +53,22 @@ int main(int argc, char** argv) {
 
         network.save(dataPath);
 
+        auto rateGraph = network.getRateGraph();
+        rateGraph.save(graphPath);
+
     } else {
         NeuralNetwork network(dataPath);
         if (filename.empty()) {
 
-            int size = 4000, correct = 0;
+            int size = data->getTestSize(), correct = 0;
             for (int i = 0; i < size; i++) {
-                auto tester = data->getTestImageData(i + 5000);
+                auto tester = data->getTestImageData(i);
 
                 int result = testImage(tester, network);
 
-                cout << "Predict: " << result << " Label: " << data->getTestLabel(i + 5000) << endl;
+                cout << "Predict: " << result << " Label: " << data->getTestLabel(i) << endl;
 
-                if (result == data->getTestLabel(i + 5000)) {
+                if (result == data->getTestLabel(i)) {
                     correct++;
                 }
             }
@@ -74,14 +78,14 @@ int main(int argc, char** argv) {
             ImageSegmentation ism(image);
 
             ism.processBinaryImage();
-            ism.numberSegmentationMainProcess("output/");
+            ism.numberSegmentationMainProcess("../output/");
 
             int size = ism.getImageCount();
             cout << size << endl;
 
             string res = "";
             for(int i=0; i<size; i++){
-                string path = "output/" + to_string(i);
+                string path = "../output/" + to_string(i);
                 path += ".bmp";
                 CImg<unsigned char> img(path.c_str());
                 img = toGreyScale(img);

@@ -26,6 +26,9 @@ private:
                                       std::vector<CImg<double>> &inputs,
                                       std::vector<CImg<double>> &outputs);
 
+    std::vector<double> correctRates;
+
+    CImg<unsigned char> rateGraph;
 
 public:
     explicit NeuralNetwork(std::vector<int> sizes);
@@ -40,6 +43,8 @@ public:
     void save(const char *filename);
 
     std::array<double, 10> predict(const std::vector<unsigned char> &testData);
+
+    CImg<unsigned char> getRateGraph();
 
 };
 
