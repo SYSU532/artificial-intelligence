@@ -56,6 +56,7 @@ struct moveInfo{
 	int srcID, dstID;
 	int srcRow, srcCol;
 	int dstRow, dstCol;
+	chess dstTemp;
 };
 
 // General(黑方将，红方帅) chess class

@@ -127,7 +127,7 @@ bool solider::judge_move(chessBoard& cb, pair<int, int> srcPos, pair<int, int> d
 		if(abs(distX) == 1 && distY == 0){ // Walk forward, always allow
 			return true;
 		} else if(abs(distY) == 1 && distX == 0){ // Walk in y-dir, when across the river
-			return ((srcPos.first / 5 == 0 && srcLevel < 0) || (srcPos.second / 5 == 0 && srcLevel > 0));
+            return ((srcPos.first / 5 == 0 && srcLevel < 0) || (srcPos.first / 5 == 1 && srcLevel > 0));
 		}
 	}
     return false;
@@ -328,7 +328,6 @@ moveInfo* chessBoard::getBestMove(){
 	// Make Min
 	int initScore = -1000000;
 	moveInfo* temp = NULL;
-    cout << steps.size() << endl;
     while(steps.size() > 0){
         moveInfo* tmp = steps.back();
         steps.pop_back();
@@ -345,7 +344,6 @@ moveInfo* chessBoard::getBestMove(){
             delete tmp;
         }
     }
-    cout << initScore << endl;
 	return temp;
 }
 
@@ -364,11 +362,21 @@ void chessBoard::getAllPossibleMove(vector<moveInfo*>& steps){
 			continue;
 		for(int row=0; row<=9; row++){
 			for(int col=0; col<=8; col++){
-				chess target = getChess(make_pair(row, col));
-                if(playerSide && target.getLevel() < 0)
+				int targetID = -1;
+				for(int j=0; j<32; j++){
+					if(chessList[j].row == row && chessList[j].col == col && chessList[j].isAlive()){
+						targetID = j;
+						break;
+					}
+				}
+                if(playerSide && targetID >= 16)
                     continue;
-                else if(!playerSide && target.getLevel() > 0)
+                else if(!playerSide && targetID < 16 && targetID >= 0)
                     continue;
+                chess target = empty(0);
+                if(targetID != -1){
+                	target = chessList[targetID];
+                }
 				saveMove(chessList[i], target, row, col, steps);
 			}
 		}
@@ -424,7 +432,7 @@ void chessBoard::saveMove(chess& src, chess& target, int row, int col, vector<mo
         step->srcID = src.id;    step->dstID = target.id;
         step->srcRow = src.row;  step->srcCol = src.col;
         step->dstRow = row;  step->dstCol = col;
-
+        step->dstTemp = board[row][col];
         steps.push_back(step);
     }
 }
@@ -435,6 +443,10 @@ void chessBoard::doMove(moveInfo* info){
 		chessList[info->dstID].alive = false;
     chessList[info->srcID].row = info->dstRow;
     chessList[info->srcID].col = info->dstCol;
+    // Do fake moving
+    chess srcTemp = board[info->srcRow][info->srcCol];
+    board[info->srcRow][info->srcCol] = empty(0);
+    board[info->dstRow][info->dstCol] = srcTemp;
 
 	playerSide = !playerSide;
 }
@@ -445,6 +457,9 @@ void chessBoard::undoMove(moveInfo* info){
 		chessList[info->dstID].alive = true;
     chessList[info->srcID].row = info->srcRow;
     chessList[info->srcID].col = info->srcCol;
+    // Undo fake moving
+    board[info->srcRow][info->srcCol] = board[info->dstRow][info->dstCol];
+    board[info->dstRow][info->dstCol] = info->dstTemp;
 
 	playerSide = !playerSide;
 }
