@@ -142,8 +142,3 @@ void MainWindow::on_reset_clicked()
     ui->climb_widget->repaint();
     ui->anneal_widget->repaint();
 }
-
-void MainWindow::on_shortest_path_clicked()
-{
-
-}
