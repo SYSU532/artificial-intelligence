@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
                                                                         trainSize);
         }
 
-        network.train(trainData, trainLabels, 20, 0.2);
+        network.train(trainData, trainLabels, 20, 0.01);
 
         network.save(dataPath);
 
