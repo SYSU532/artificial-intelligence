@@ -1,0 +1,3 @@
+/Users/mig/Desktop/大三上/artificial-intelligence/reports/bp/CMakeFiles/rebuild_cache.dir
+/Users/mig/Desktop/大三上/artificial-intelligence/reports/bp/CMakeFiles/edit_cache.dir
+/Users/mig/Desktop/大三上/artificial-intelligence/reports/bp/CMakeFiles/bp-mac.dir
