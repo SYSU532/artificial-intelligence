@@ -71,7 +71,6 @@ double HillClimbing::startClimbing(){
         x = rand_pick();
         y = rand_pick();
     }
-
     reverse(x, y);
     double new_length = getDistance();
     if(new_length < curr_length){

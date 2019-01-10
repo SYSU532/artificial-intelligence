@@ -30,8 +30,6 @@ private slots:
 
     void on_reset_clicked();
 
-    void on_shortest_path_clicked();
-
 private:
     bool climb_finished = false, anneal_finished = false;
     void paintEvent(QPaintEvent *);
