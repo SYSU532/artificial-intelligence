@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GameWindow</class>
+ <widget class="QWidget" name="GameWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>521</width>
+    <height>578</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image:url(:/Sample/images/WOOD.GIF)</string>
+  </property>
+  <widget class="QPushButton" name="redRook1">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image:url(:/Sample/images/WOOD/RR.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redHorse1">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RN.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redElephant1">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RB.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redGuard1">
+   <property name="geometry">
+    <rect>
+     <x>178</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RA.GIF);border-radius:50%;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redGeneral">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RK.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redSolider1">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>340</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RP.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redCannon1">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>400</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RC.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redGuard2">
+   <property name="geometry">
+    <rect>
+     <x>292</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RA.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redElephant2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RB.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redHorse2">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RN.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redRook2">
+   <property name="geometry">
+    <rect>
+     <x>465</x>
+     <y>520</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image:url(:/Sample/images/WOOD/RR.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redCannon2">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>400</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RC.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redSolider2">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>340</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RP.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redSolider3">
+   <property name="geometry">
+    <rect>
+     <x>232</x>
+     <y>340</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RP.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redSolider4">
+   <property name="geometry">
+    <rect>
+     <x>348</x>
+     <y>340</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RP.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="redSolider5">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>340</y>
+     <width>57</width>
+     <height>57</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/RP.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackSolider1">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>170</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BP.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackGeneral">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BK.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackElephant1">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BB.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackGuard1">
+   <property name="geometry">
+    <rect>
+     <x>178</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BA.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackRook1">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BR.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackHorse1">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BN.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackCannon1">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BC.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackSolider2">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>170</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BP.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackSolider3">
+   <property name="geometry">
+    <rect>
+     <x>232</x>
+     <y>170</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BP.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackSolider4">
+   <property name="geometry">
+    <rect>
+     <x>348</x>
+     <y>170</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BP.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackSolider5">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>170</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BP.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackCannon2">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>120</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BC.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackGuard2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BA.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackElephant2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BB.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackHorse2">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BN.GIF);border-radius:50%;height:20px;width:20px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="blackRook2">
+   <property name="geometry">
+    <rect>
+     <x>465</x>
+     <y>0</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Sample/images/WOOD/BR.GIF);border-radius:50%;height:20px;width:20px;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>0</y>
+     <width>111</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/red.jpg);</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView_2">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>0</y>
+     <width>101</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/red.jpg);</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

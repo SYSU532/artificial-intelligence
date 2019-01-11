@@ -8,6 +8,7 @@ GA::GA(){
 	}
 }
 
+
 Path GA::getShortestPath(){
 	srand((unsigned)time(NULL));
 
@@ -32,7 +33,6 @@ Path GA::getShortestPath(){
 	bestResult.calculateLength();
 	return bestResult;
 }
-
 // Roulette Gambling
 void GA::choose(vector<Path>& oth){
 	double sum_fitness = 0,  // Choose fitness sum

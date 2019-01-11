@@ -34,9 +34,6 @@ private:
     Ui::MainWindow* ui;
     QMediaPlayer *player;
 
-    // Chess Board variables
-    //chessBoard* chessboard;
-    //chessHandler* chesshandler;
     bool gameStart;
     bool gameOver;
 

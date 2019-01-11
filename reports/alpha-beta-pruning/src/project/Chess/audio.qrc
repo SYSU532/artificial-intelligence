@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../Sample/audios/AttackKing.wav</file>
+        <file>../Sample/audios/back.mp3</file>
+        <file>../Sample/audios/Choose.wav</file>
+        <file>../Sample/audios/Eat.wav</file>
+        <file>../Sample/audios/Forbid.wav</file>
+        <file>../Sample/audios/Loss.wav</file>
+        <file>../Sample/audios/Move.wav</file>
+        <file>../Sample/audios/Win.wav</file>
+    </qresource>
+</RCC>

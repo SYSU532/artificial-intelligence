@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../Sample/images/WOOD.GIF</file>
+        <file>../Sample/images/WOOD/BA.GIF</file>
+        <file>../Sample/images/WOOD/BAS.GIF</file>
+        <file>../Sample/images/WOOD/BB.GIF</file>
+        <file>../Sample/images/WOOD/BBS.GIF</file>
+        <file>../Sample/images/WOOD/BC.GIF</file>
+        <file>../Sample/images/WOOD/BCS.GIF</file>
+        <file>../Sample/images/WOOD/BK.GIF</file>
+        <file>../Sample/images/WOOD/BKM.GIF</file>
+        <file>../Sample/images/WOOD/BKS.GIF</file>
+        <file>../Sample/images/WOOD/BN.GIF</file>
+        <file>../Sample/images/WOOD/BNS.GIF</file>
+        <file>../Sample/images/WOOD/BP.GIF</file>
+        <file>../Sample/images/WOOD/BPS.GIF</file>
+        <file>../Sample/images/WOOD/BR.GIF</file>
+        <file>../Sample/images/WOOD/BRS.GIF</file>
+        <file>../Sample/images/WOOD/OO.GIF</file>
+        <file>../Sample/images/WOOD/OOS.GIF</file>
+        <file>../Sample/images/WOOD/RA.GIF</file>
+        <file>../Sample/images/WOOD/RAS.GIF</file>
+        <file>../Sample/images/WOOD/RB.GIF</file>
+        <file>../Sample/images/WOOD/RBS.GIF</file>
+        <file>../Sample/images/WOOD/RC.GIF</file>
+        <file>../Sample/images/WOOD/RCS.GIF</file>
+        <file>../Sample/images/WOOD/RK.GIF</file>
+        <file>../Sample/images/WOOD/RKM.GIF</file>
+        <file>../Sample/images/WOOD/RKS.GIF</file>
+        <file>../Sample/images/WOOD/RN.GIF</file>
+        <file>../Sample/images/WOOD/RNS.GIF</file>
+        <file>../Sample/images/WOOD/RP.GIF</file>
+        <file>../Sample/images/WOOD/RPS.GIF</file>
+        <file>../Sample/images/WOOD/RR.GIF</file>
+        <file>../Sample/images/WOOD/RRS.GIF</file>
+        <file>chess0.png</file>
+        <file>red.jpg</file>
+    </qresource>
+</RCC>

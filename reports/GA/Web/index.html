@@ -1,0 +1,27 @@
+<!DOCTYPE>
+<html>
+<header>
+	<title>遗传算法 - 求解TSP问题</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="GA.css">
+</header>
+<body>
+<div class="head-box">
+	<h1 class="text-center title">Genertic Algorithm to solve TSP</h1>
+	<button class="btn btn-success head-btn" onclick="beginGA()"> Start GA </button>
+</div>
+<div class="graph-box">
+	<canvas id="cav"></canvas>
+	<h2 class="text">Current Path's Length</h2>
+	<div class="path-box" id="path"></div>
+	<h2 class="text" style="margin-left:350px;margin-top:100px;">Total Cost Time</h2>
+	<div class="path-box" id="time"></div>
+</div>
+
+<script src="jquery.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="GA.js"></script>
+</body>
+
+
+</html>
